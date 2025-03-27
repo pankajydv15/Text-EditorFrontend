@@ -78,8 +78,8 @@ const TextEditor = () => {
     setLoading(true);
     setLetters([]);
     try {
-      // const token = gapi.client.getToken()?.access_token;
-      const token = localStorage.getItem("accessToken");
+      const token = gapi.client.getToken()?.access_token;
+      // const token = localStorage.getItem("accessToken");
       if (!token) {
         alert("❌ User not authenticated. Please login with Google.");
         return;
