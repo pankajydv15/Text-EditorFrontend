@@ -67,7 +67,7 @@ const TextEditor = () => {
       setFileName("");
     } catch (err) {
       console.error("❌ Error saving to Google Drive:", err);
-      alert("❌ Failed to save to Google Drive.");
+      alert("❌ Please Login First.");
     } finally {
       setLoading(false);
     }

@@ -124,7 +124,7 @@ export const saveToGoogleDrive = async (content,fileName) => {
     console.log(`✅ Content added to Google Docs file: ${fileName}.docx (ID: ${fileId})`);
     return { fileId };
   } catch (error) {
-    console.error("❌ Failed to save to Google Drive Please Login:", error);
+    console.error("❌ Failed to save to Google Drive:", error);
     throw error;
   }
 };
