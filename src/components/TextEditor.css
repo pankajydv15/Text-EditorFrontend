@@ -1,4 +1,4 @@
-/* General Styling */
+
 .editor-container {
   max-width: 800px;
   margin: auto;
@@ -10,7 +10,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* Header */
+
 .editor-header {
   display: flex;
   justify-content: space-between;
@@ -23,7 +23,7 @@
   color: #00d4ff;
 }
 
-/* Toolbar */
+
 .editor-toolbar {
   display: flex;
   gap: 10px;
@@ -46,7 +46,7 @@
   color: #000;
 }
 
-/* Editor Content */
+
 .editor-content {
   min-height: 200px;
   background: #222;
@@ -56,7 +56,7 @@
   color: #fff;
 }
 
-/* Buttons */
+
 .btn {
   background: #00d4ff;
   color: #000;
@@ -69,7 +69,7 @@
   margin-right: 10px;
 }
 
-/* 📂 File Name Input Styling */
+
 .file-name-input {
   margin: 10px 0;
   display: flex;
@@ -88,7 +88,7 @@
 }
 
 .file-name-input input:focus {
-  border-color: #007bff; /* Highlight on focus */
+  border-color: #007bff; 
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
@@ -100,7 +100,7 @@
   pointer-events: none;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%); /* ✅ Proper Centering */
+  transform: translate(-50%, -50%); 
   text-align: center;
   width: 100%;
   display: block;
@@ -111,7 +111,7 @@
   color: #00d4ff;
 }
 
-/* Danger Button */
+
 .btn.danger {
   background: #ff4d4d;
 }
@@ -120,7 +120,7 @@
   background: #ff6666;
 }
 
-/* Drafts & Letters */
+
 .saved-drafts, .google-drive-letters {
   margin-top: 20px;
   padding: 10px;

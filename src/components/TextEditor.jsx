@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { gapiLoad, gisLoad, authenticateUser, saveToGoogleDrive } from "../services/googleDriveServices";
-import "./TextEditor.css"; // Add a separate CSS file for styles
+import "./TextEditor.css"; 
 import Placeholder from "@tiptap/extension-placeholder"; 
-// ✅ Import Placeholder
+
 
 const TextEditor = () => {
   const editor = useEditor({
     extensions: [StarterKit, Placeholder.configure({
-      placeholder: "Start writing here...", // ✅ Placeholder text
+      placeholder: "Start writing here...", 
     }),
   ],
     content: "",
@@ -20,7 +20,7 @@ const TextEditor = () => {
   const [user, setUser] = useState(null);
   const [drafts, setDrafts] = useState([]);
   const [letters, setLetters] = useState([]);
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false); 
   const [fileName, setFileName] = useState("");
 
   useEffect(() => {

@@ -25,5 +25,5 @@ const FirebaseAuth = ({ onLogin }) => {
   );
 };
 
-// ✅ Ensure this line is present
+
 export default FirebaseAuth;

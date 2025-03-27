@@ -1,4 +1,3 @@
-// Firebase ka config yaha paste karo
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 

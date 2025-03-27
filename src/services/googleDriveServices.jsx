@@ -3,7 +3,7 @@ let tokenClient;
 let gapiLoaded = false;
 let gisLoaded = false;
 
-// Load Google API Client
+
 export const gapiLoad = () => {
   gapi.load("client", async () => {
     await gapi.client.init({
@@ -14,7 +14,6 @@ export const gapiLoad = () => {
   });
 };
 
-// Load Google Identity Service (OAuth)
 export const gisLoad = () => {
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
@@ -31,7 +30,7 @@ export const gisLoad = () => {
   gisLoaded = true;
 };
 
-// Google Login
+
 export const authenticateUser = () => {
   if (!gapiLoaded || !gisLoaded) {
     console.error("Google API not loaded properly.");
@@ -42,10 +41,9 @@ export const authenticateUser = () => {
 
 
 
-// Function to get or create "Letter" folder in Google Drive
 const getOrCreateLetterFolder = async () => {
   try {
-    // 🔍 Check if "Letter" folder already exists in root
+  
     const response = await gapi.client.drive.files.list({
       q: "name='Letter' and mimeType='application/vnd.google-apps.folder' and 'root' in parents",
       fields: "files(id, parents)",
@@ -53,21 +51,21 @@ const getOrCreateLetterFolder = async () => {
 
     if (response.result.files.length > 0) {
       console.log("📂 'Letter' folder exists:", response.result.files[0].id);
-      return response.result.files[0].id; // Return folder ID
+      return response.result.files[0].id; 
     }
 
-    // 🆕 Create new "Letter" folder inside root
+    
     const folderResponse = await gapi.client.drive.files.create({
       resource: {
         name: "Letter",
         mimeType: "application/vnd.google-apps.folder",
-        parents: ["root"], // ✅ Ensure it is inside root
+        parents: ["root"], 
       },
       fields: "id",
     });
 
     console.log("✅ 'Letter' folder created:", folderResponse.result.id);
-    return folderResponse.result.id; // Return new folder ID
+    return folderResponse.result.id; 
   } catch (error) {
     console.error("❌ Error getting/creating folder:", error);
     throw error;
@@ -75,7 +73,7 @@ const getOrCreateLetterFolder = async () => {
 };
 
 
-// Save content to Google Drive inside "Letter" folder in Google Docs format
+
 export const saveToGoogleDrive = async (content,fileName) => {
 
   if (!gapi.client.getToken()) {
@@ -84,22 +82,22 @@ export const saveToGoogleDrive = async (content,fileName) => {
   }
 
   try {
-    const folderId = await getOrCreateLetterFolder(); // Get folder ID
+    const folderId = await getOrCreateLetterFolder(); 
 
-    // 📝 Step 1: Create an empty Google Docs file inside the "Letter" folder
+    
     const fileResponse = await gapi.client.drive.files.create({
       resource: {
-        name: `${fileName}.docx`, // File name
-        mimeType: "application/vnd.google-apps.document", // Google Docs format
-        parents: [folderId], // ✅ Save inside "Letter" folder
+        name: `${fileName}.docx`, 
+        mimeType: "application/vnd.google-apps.document", 
+        parents: [folderId], 
       },
-      fields: "id", // Get the file ID
+      fields: "id", 
     });
 
-    const fileId = fileResponse.result.id; // Get newly created document ID
+    const fileId = fileResponse.result.id; 
     console.log("📄 Empty Google Docs file created:", fileId);
 
-    // ✏️ Step 2: Add content inside the created Google Docs file
+    
     const docsAPIUrl = `https://docs.googleapis.com/v1/documents/${fileId}:batchUpdate`;
     const response = await fetch(docsAPIUrl, {
       method: "POST",
@@ -111,8 +109,8 @@ export const saveToGoogleDrive = async (content,fileName) => {
         requests: [
           {
             insertText: {
-              location: { index: 1 }, // Insert at the beginning
-              text: content, // Insert the actual editor content
+              location: { index: 1 }, 
+              text: content, 
             },
           },
         ],
