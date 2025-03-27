@@ -78,12 +78,13 @@ const TextEditor = () => {
     setLoading(true);
     setLetters([]);
     try {
-      const token = gapi.client.getToken()?.access_token;
+      // const token = gapi.client.getToken()?.access_token;
+      const token = localStorage.getItem("accessToken");
       if (!token) {
         alert("❌ User not authenticated. Please login with Google.");
         return;
       }
-      const response = await fetch("http://localhost:5000/fetch-letters", {
+      const response = await fetch("https://text-editorbackend.onrender.com/fetch-letters", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
